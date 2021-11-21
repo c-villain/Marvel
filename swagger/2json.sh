@@ -1,0 +1,1 @@
+swagger-codegen generate -i swagger.yaml -l openapi-yaml
