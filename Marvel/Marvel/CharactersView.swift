@@ -26,10 +26,10 @@ struct CharactersView: View {
         .listStyle(.plain)
         .task {
             do {
-            try await vm.fetch()
+                try await vm.fetch()
             } catch {
                 
             }
         }
-    } 
+    }
 }
