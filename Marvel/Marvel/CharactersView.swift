@@ -29,6 +29,7 @@ struct CharactersView: View {
                             .onTapGesture {
                                 selection = hero
                             }
+                        
                         NavigationLink(
                             destination: CharacterView(name: selection?.name,
                                                        description: selection?.description,
@@ -37,6 +38,7 @@ struct CharactersView: View {
                             selection: $selection,
                             label: {EmptyView()})
                     }
+
                     if vm.isLoading {
                         ProgressView()
                     }
@@ -44,13 +46,6 @@ struct CharactersView: View {
             }
             .navigationBarTitle("Superheroes", displayMode: .automatic)
         }
-        .listStyle(.plain)
-        .task {
-            do {
-                try await vm.fetch()
-            } catch {
-                
-            }
-        }
+        .searchable(text: $vm.searchForHero)
     }
 }
