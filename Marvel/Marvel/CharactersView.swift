@@ -18,7 +18,7 @@ struct CharactersView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack {
                     ForEach(vm.heroes) { hero in
-                        CharacterView(name: hero.name,
+                        PlainCharacterView(name: hero.name,
                                       description: hero.description,
                                       imageUrl: "\(hero.thumbnail?.path ?? "").\(hero.thumbnail?._extension ?? "")")
                             .onAppear {
@@ -31,9 +31,7 @@ struct CharactersView: View {
                             }
                         
                         NavigationLink(
-                            destination: CharacterView(name: selection?.name,
-                                                       description: selection?.description,
-                                                       imageUrl: "\(selection?.thumbnail?.path ?? "").\(selection?.thumbnail?._extension ?? "")"),
+                            destination: CharacterView(hero: selection),
                             tag: hero,
                             selection: $selection,
                             label: {EmptyView()})

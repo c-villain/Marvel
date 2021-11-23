@@ -2,7 +2,7 @@
 //  CharacterView.swift
 //  Marvel
 //
-//  Created by c-villain on 21.11.2021.
+//  Created by c-villain on 24.11.2021.
 //
 
 import SwiftUI
@@ -10,71 +10,88 @@ import MarvelNetwork
 
 struct CharacterView: View {
     
-    let name: String?
-    let description: String?
-    let imageUrl: String?
+    let hero: ModelCharacter?
+    var urls: [IdentifiableUrl] = []
+    
+    init(hero: ModelCharacter?) {
+        self.hero = hero
+        
+        _ = hero?.urls?.compactMap {
+            self.urls.append(.init(url: $0.url ?? "", type: $0.type ?? ""))
+        }
+    }
     
     var placeholder: some View {
         Image(systemName: "photo")
     }
     
     var body: some View {
-        HStack(spacing: 12) {
-            Group {
-                if let imageUrl = imageUrl {
-                    AsyncImage(url: .init(string: imageUrl)) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image.resizable()
-                                .aspectRatio(contentMode: .fit)
-                        case .failure:
-                            placeholder
-                        @unknown default:
-                            // Since the AsyncImagePhase enum isn't frozen,
-                            // we need to add this currently unused fallback
-                            // to handle any new cases that might be added
-                            // in the future:
+        let imageUrl = "\(hero?.thumbnail?.path ?? "").\(hero?.thumbnail?._extension ?? "")"
+        
+        return ScrollView {
+            VStack {
+                VStack(alignment: .leading, spacing: 12.0) {
+                    Text(hero?.name ?? "Unknown hero")
+                        .fontWeight(.bold)
+                        .font(.largeTitle)
+                        .foregroundColor(.accentColor)
+                    
+                    Group {
+                        if !imageUrl.isEmpty {
+                            AsyncImage(url: .init(string: imageUrl)) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                case .success(let image):
+                                    image.resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                case .failure:
+                                    placeholder
+                                @unknown default:
+                                    // Since the AsyncImagePhase enum isn't frozen,
+                                    // we need to add this currently unused fallback
+                                    // to handle any new cases that might be added
+                                    // in the future:
+                                    placeholder
+                                }
+                            }
+                        } else {
                             placeholder
                         }
+                    }.overlay(alignment: .bottomLeading) {
+                        HStack {
+                            ForEach(self.urls) { tag in
+                                if let text = tag.type, let url = URL(string: tag.url) {
+                                    Link(destination: url) {
+                                        Text(text)
+                                            .padding(8)
+                                            .font(.body)
+                                            .background(Color.blue)
+                                            .foregroundColor(Color.white)
+                                            .cornerRadius(5)
+                                    }
+                                } else {
+                                    EmptyView()
+                                }
+                            }
+                        }
+                        .padding(8.0)
                     }
-                } else {
-                    placeholder
                 }
-            }
-            .frame(maxWidth: 90)
-            .cornerRadius(6.0)
-            
-            VStack {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text(name ?? "Unknown hero")
-                        .fontWeight(.bold)
-                    Text(description ?? "")
-                        .fontWeight(.regular)
-                        .lineLimit(3)
+                
+                if let description = hero?.description, !description.isEmpty {
+                    VStack(alignment: .leading, spacing: 6.0) {
+                        Text("Overview:")
+                            .fontWeight(.bold)
+                        
+                        Text(description)
+                            .fontWeight(.regular)
+                            .foregroundColor(.gray)
+                    }
                 }
-                Spacer(minLength: 0)
+                Spacer()
             }
-            .frame(height: 100)
-            .frame(maxWidth: .infinity, alignment: .topLeading)
-        }
-        .frame(height: 100)
-        .contentShape(Rectangle())
-        .padding(16)
-    }
-}
-
-struct CharacterView_Previews: PreviewProvider {
-    static var previews: some View {
-        List {
-        CharacterView(name: "Spider-man",
-                      description: "It's a superhero created by writer-editor Stan Lee and writer-artist Steve Ditko",
-                      imageUrl: "https://upload.wikimedia.org/wikipedia/en/2/21/Web_of_Spider-Man_Vol_1_129-1.png")
-        
-        CharacterView(name: "Big-man",
-                      description: nil,
-                      imageUrl: "https://upload.wikimedia.org/wikipedia/en/2/21/Web_of_Spider-Man_Vol_1_129-1.png")
+            .padding(.horizontal, 16.0)
         }
     }
 }
