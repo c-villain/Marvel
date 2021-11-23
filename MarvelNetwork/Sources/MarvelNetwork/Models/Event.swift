@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct Event: Codable {
+public struct Event: Codable, Hashable {
 
     /** The unique ID of the event resource. */
     public var id: Int?

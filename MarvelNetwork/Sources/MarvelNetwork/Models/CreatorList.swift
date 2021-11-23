@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CreatorList: Codable {
+public struct CreatorList: Codable, Hashable {
 
     /** The number of total available creators in this list. Will always be greater than or equal to the \"returned\" value. */
     public var available: Int?

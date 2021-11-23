@@ -43,25 +43,37 @@ struct CharacterView: View {
                     placeholder
                 }
             }
-            .frame(height: 100)
             .frame(maxWidth: 90)
             
-            VStack(alignment: .leading, spacing: 12) {
-                Text(name ?? "Unknown hero").fontWeight(.bold)
-                Text(description ?? "")
-                    .fontWeight(.regular)
-                    .multilineTextAlignment(.leading)
+            VStack {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(name ?? "Unknown hero")
+                        .fontWeight(.bold)
+                    Text(description ?? "")
+                        .fontWeight(.regular)
+                        .lineLimit(3)
+                }
+                Spacer(minLength: 0)
             }
+            .frame(height: 100)
+            .frame(maxWidth: .infinity, alignment: .topLeading)
         }
         .frame(height: 100)
+        .contentShape(Rectangle())
         .padding(16)
     }
 }
 
 struct CharacterView_Previews: PreviewProvider {
     static var previews: some View {
+        List {
         CharacterView(name: "Spider-man",
                       description: "It's a superhero created by writer-editor Stan Lee and writer-artist Steve Ditko",
                       imageUrl: "https://upload.wikimedia.org/wikipedia/en/2/21/Web_of_Spider-Man_Vol_1_129-1.png")
+        
+        CharacterView(name: "Big-man",
+                      description: nil,
+                      imageUrl: "https://upload.wikimedia.org/wikipedia/en/2/21/Web_of_Spider-Man_Vol_1_129-1.png")
+        }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct Url: Codable {
+public struct Url: Codable, Hashable {
 
     /** A text identifier for the URL. */
     public var type: String?

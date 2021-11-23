@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct Creator: Codable {
+public struct Creator: Codable, Hashable {
 
     /** The unique ID of the creator resource. */
     public var id: Int?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct Image: Codable {
+public struct Image: Codable, Hashable {
 
     /** The directory path of to the image. */
     public var path: String?

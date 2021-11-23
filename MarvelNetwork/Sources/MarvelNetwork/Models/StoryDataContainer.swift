@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct StoryDataContainer: Codable {
+public struct StoryDataContainer: Codable, Hashable {
 
     /** The requested offset (number of skipped results) of the call. */
     public var offset: Int?

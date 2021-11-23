@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ComicDate: Codable {
+public struct ComicDate: Codable, Hashable {
 
     /** A description of the date (e.g. onsale date, FOC date). */
     public var type: String?
