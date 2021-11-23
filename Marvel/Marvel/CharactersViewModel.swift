@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MarvelNetwork
+import Combine
 
 @MainActor
 final class CharactersViewModel: ObservableObject {
@@ -15,24 +16,43 @@ final class CharactersViewModel: ObservableObject {
     
     @Published private(set) var heroes: [ModelCharacter] = []
     @Published var isLoading: Bool = false
+    @Published var searchForHero: String = ""
+    
+    private var nameStartWith: String? // debounced searched text
+    private var subscriptions = Set<AnyCancellable>()
     
     init() {
-        currentOffset = 0
+        $searchForHero
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
+            .sink(receiveValue: { t in
+                self.heroes.removeAll()
+                self.nameStartWith = t.isEmpty ? nil : t
+                self.currentOffset = 0
+            } )
+            .store(in: &subscriptions)
+        
+        Task {
+            try await charactersCollection()
+        }
     }
     
-    var currentOffset: Int {
+    deinit {
+        subscriptions.removeAll()
+    }
+    
+    var currentOffset: Int = 0 {
         didSet {
             Task {
-                try await fetch()
+                try await charactersCollection(nameStartsWith: nameStartWith)
             }
         }
     }
     
-    func fetch() async throws {
+    func charactersCollection(nameStartsWith: String? = nil) async throws {
         do {
             guard !isLoading else { return }
             isLoading = true
-            let data = try await PublicAPI.getCharactersCollection(limit: limit, offset: currentOffset)
+            let data = try await PublicAPI.getCharactersCollection(nameStartsWith: nameStartsWith, limit: limit, offset: currentOffset)
             guard let characters = data.data?.results else { return }
             heroes.append(contentsOf: characters)
             isLoading = false

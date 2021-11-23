@@ -44,6 +44,7 @@ struct CharacterView: View {
                 }
             }
             .frame(maxWidth: 90)
+            .cornerRadius(6.0)
             
             VStack {
                 VStack(alignment: .leading, spacing: 12) {
