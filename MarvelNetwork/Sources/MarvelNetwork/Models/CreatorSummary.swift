@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CreatorSummary: Codable {
+public struct CreatorSummary: Codable, Hashable {
 
     /** The path to the individual creator resource. */
     public var resourceURI: String?

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ComicPrice: Codable {
+public struct ComicPrice: Codable, Hashable {
 
     /** A description of the price (e.g. print price, digital price). */
     public var type: String?

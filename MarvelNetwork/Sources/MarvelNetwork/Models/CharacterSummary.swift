@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CharacterSummary: Codable {
+public struct CharacterSummary: Codable, Hashable {
 
     /** The path to the individual character resource. */
     public var resourceURI: String?

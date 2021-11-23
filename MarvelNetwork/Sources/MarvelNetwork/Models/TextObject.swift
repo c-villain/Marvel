@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct TextObject: Codable {
+public struct TextObject: Codable, Hashable {
 
     /** The canonical type of the text object (e.g. solicit text, preview text, etc.). */
     public var type: String?

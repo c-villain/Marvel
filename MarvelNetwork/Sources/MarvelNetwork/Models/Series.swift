@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct Series: Codable {
+public struct Series: Codable, Hashable {
 
     /** The unique ID of the series resource. */
     public var id: Int?

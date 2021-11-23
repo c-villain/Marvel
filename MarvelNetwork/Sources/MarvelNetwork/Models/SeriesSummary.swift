@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct SeriesSummary: Codable {
+public struct SeriesSummary: Codable, Hashable {
 
     /** The path to the individual series resource. */
     public var resourceURI: String?

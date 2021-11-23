@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ModelCharacter: Codable {
+public struct ModelCharacter: Codable, Hashable {
 
     /** The unique ID of the character resource. */
     public var id: Int?

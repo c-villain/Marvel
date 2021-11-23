@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct EventList: Codable {
+public struct EventList: Codable, Hashable {
 
     /** The number of total available events in this list. Will always be greater than or equal to the \"returned\" value. */
     public var available: Int?

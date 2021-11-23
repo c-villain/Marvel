@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct SeriesList: Codable {
+public struct SeriesList: Codable, Hashable {
 
     /** The number of total available series in this list. Will always be greater than or equal to the \"returned\" value. */
     public var available: Int?

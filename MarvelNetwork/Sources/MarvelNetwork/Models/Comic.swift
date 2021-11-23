@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct Comic: Codable {
+public struct Comic: Codable, Hashable {
 
     /** The unique ID of the comic resource. */
     public var id: Int?

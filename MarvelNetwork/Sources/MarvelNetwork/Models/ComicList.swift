@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct ComicList: Codable {
+public struct ComicList: Codable, Hashable {
 
     /** The number of total available issues in this list. Will always be greater than or equal to the \"returned\" value. */
     public var available: Int?

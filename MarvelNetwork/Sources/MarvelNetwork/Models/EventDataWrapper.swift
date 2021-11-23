@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct EventDataWrapper: Codable {
+public struct EventDataWrapper: Codable, Hashable {
 
     /** The HTTP status code of the returned result. */
     public var code: Int?

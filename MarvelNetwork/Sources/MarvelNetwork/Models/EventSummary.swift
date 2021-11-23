@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct EventSummary: Codable {
+public struct EventSummary: Codable, Hashable {
 
     /** The path to the individual event resource. */
     public var resourceURI: String?

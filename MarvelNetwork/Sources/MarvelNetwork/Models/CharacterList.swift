@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public struct CharacterList: Codable {
+public struct CharacterList: Codable, Hashable {
 
     /** The number of total available characters in this list. Will always be greater than or equal to the \"returned\" value. */
     public var available: Int?
