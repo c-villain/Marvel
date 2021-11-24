@@ -1,41 +1,30 @@
 //
-//  CharacterView.swift
+//  ComicView.swift
 //  Marvel
 //
-//  Created by c-villain on 24.11.2021.
+//  Created by c-villain on 25.11.2021.
 //
 
 import SwiftUI
 import MarvelNetwork
 
-struct CharacterView: View {
+struct ComicView: View {
     
-    let hero: ModelCharacter?
-    var urls: [IdentifiableUrl] = []
-    
-    init(hero: ModelCharacter?) {
-        self.hero = hero
-        
-        _ = hero?.urls?.compactMap {
-            self.urls.append(.init(url: $0.url ?? "", type: $0.type ?? ""))
-        }
-    }
+    let comic: Comic?
     
     var placeholder: some View {
         Image(systemName: "photo")
     }
     
     var body: some View {
-        let imageUrl = "\(hero?.thumbnail?.path ?? "").\(hero?.thumbnail?._extension ?? "")"
-        
+        let imageUrl = "\(comic?.thumbnail?.path ?? "").\(comic?.thumbnail?._extension ?? "")"
         return ScrollView {
-            VStack {
-                VStack(alignment: .leading, spacing: 12.0) {
-                    Text(hero?.name ?? "Unknown hero")
+            VStack(spacing: 12.0) {
+                VStack(alignment: .leading, spacing: 8.0) {
+                    Text(comic?.title ?? "")
                         .fontWeight(.bold)
                         .font(.largeTitle)
                         .foregroundColor(.accentColor)
-                    
                     Group {
                         if !imageUrl.isEmpty {
                             AsyncImage(url: .init(string: imageUrl)) { phase in
@@ -58,29 +47,11 @@ struct CharacterView: View {
                         } else {
                             placeholder
                         }
-                    }.overlay(alignment: .bottomLeading) {
-                        HStack {
-                            ForEach(self.urls) { tag in
-                                if let text = tag.type, let url = URL(string: tag.url) {
-                                    Link(destination: url) {
-                                        Text(text)
-                                            .padding(8)
-                                            .font(.body)
-                                            .background(Color.blue)
-                                            .foregroundColor(Color.white)
-                                            .cornerRadius(5)
-                                    }
-                                } else {
-                                    EmptyView()
-                                }
-                            }
-                        }
-                        .padding(8.0)
                     }
                 }
                 
-                if let description = hero?.description, !description.isEmpty {
-                    VStack(alignment: .leading, spacing: 6.0) {
+                if let description = comic?.description, !description.isEmpty {
+                    VStack(alignment: .leading, spacing: 8.0) {
                         Text("Overview:")
                             .fontWeight(.bold)
                         
@@ -89,9 +60,7 @@ struct CharacterView: View {
                             .foregroundColor(.gray)
                     }
                 }
-                Spacer()
             }
-            .padding(.horizontal, 16.0)
         }
     }
 }

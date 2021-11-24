@@ -1,5 +1,5 @@
 //
-//  CharacterView.swift
+//  CharactersListView_Item.swift
 //  Marvel
 //
 //  Created by c-villain on 21.11.2021.
@@ -8,8 +8,7 @@
 import SwiftUI
 import MarvelNetwork
 
-// plain view for list with heroes
-struct PlainCharacterView: View {
+struct CharactersListView_Item: View {
     
     let name: String?
     let description: String?
@@ -69,11 +68,11 @@ struct PlainCharacterView: View {
 struct PlainCharacterView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            PlainCharacterView(name: "Spider-man",
+            CharactersListView_Item(name: "Spider-man",
                                description: "It's a superhero created by writer-editor Stan Lee and writer-artist Steve Ditko",
                                imageUrl: "https://upload.wikimedia.org/wikipedia/en/2/21/Web_of_Spider-Man_Vol_1_129-1.png")
             
-            PlainCharacterView(name: "Big-man",
+            CharactersListView_Item(name: "Big-man",
                                description: nil,
                                imageUrl: "https://upload.wikimedia.org/wikipedia/en/2/21/Web_of_Spider-Man_Vol_1_129-1.png")
         }

@@ -22,13 +22,13 @@ class MarvelDecodableRequestBuilder<T: Decodable>: URLSessionDecodableRequestBui
     
     override func createURLRequest(urlSession: URLSession, method: HTTPMethod, encoding: ParameterEncoding, headers: [String:String]) throws -> URLRequest {
 
-        let ts = Date.currentTimeStamp
-        let publicKey = Obfuscator.injected.reveal(key: SecretAPIKeys.publicKey)
-        let privateKey = Obfuscator.injected.reveal(key: SecretAPIKeys.privateKey)
-        let hash = MD5(ts + privateKey + publicKey)
-        let subscribedUrlString = URLString + "&ts=\(ts)&apikey=\(publicKey)&hash=\(hash)"
-        
-        guard let url = URL(string: subscribedUrlString) else {
+//        let ts = Date.currentTimeStamp
+//        let publicKey = Obfuscator.injected.reveal(key: SecretAPIKeys.publicKey)
+//        let privateKey = Obfuscator.injected.reveal(key: SecretAPIKeys.privateKey)
+//        let hash = MD5(ts + privateKey + publicKey)
+//        let subscribedUrlString = URLString + "&ts=\(ts)&apikey=\(publicKey)&hash=\(hash)"
+//        
+        guard let url = URL(string: URLString.subscribedUrlString) else {
             throw DownloadException.requestMissingURL
         }
 

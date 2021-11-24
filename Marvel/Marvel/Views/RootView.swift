@@ -16,9 +16,10 @@ struct RootView: View {
     
     var body: some View {
         TabView {
-            CharactersView()
+            CharactersListView()
+                .environmentObject(ComicViewModel())
                 .tabItem {
-                    Label("Characters", systemImage: "list.dash")
+                    Label("Heroes", systemImage: "list.dash")
                 }
             
             CreatorsView()

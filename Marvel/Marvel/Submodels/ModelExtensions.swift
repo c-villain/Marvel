@@ -9,3 +9,4 @@ import Foundation
 import MarvelNetwork
 
 extension ModelCharacter: Identifiable { }
+extension Comic: Identifiable { }

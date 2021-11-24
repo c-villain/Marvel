@@ -1,5 +1,5 @@
 //
-//  CharactersView.swift
+//  CharactersListView.swift
 //  Marvel
 //
 //  Created by c-villain on 13.11.2021.
@@ -8,7 +8,7 @@
 import SwiftUI
 import MarvelNetwork
 
-struct CharactersView: View {
+struct CharactersListView: View {
     
     @StateObject public var vm = CharactersViewModel()
     @State private var selection: ModelCharacter?
@@ -18,7 +18,7 @@ struct CharactersView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack {
                     ForEach(vm.heroes) { hero in
-                        PlainCharacterView(name: hero.name,
+                        CharactersListView_Item(name: hero.name,
                                       description: hero.description,
                                       imageUrl: "\(hero.thumbnail?.path ?? "").\(hero.thumbnail?._extension ?? "")")
                             .onAppear {
@@ -30,11 +30,13 @@ struct CharactersView: View {
                                 selection = hero
                             }
                         
-                        NavigationLink(
+                        NavigationLink (
                             destination: CharacterView(hero: selection),
                             tag: hero,
                             selection: $selection,
-                            label: {EmptyView()})
+                            label: {
+                                EmptyView()
+                            })
                     }
 
                     if vm.isLoading {
