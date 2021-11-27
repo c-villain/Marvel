@@ -16,9 +16,9 @@ struct RootView: View {
     
     var body: some View {
         TabView {
-            CharactersView()
+            CharactersListView()
                 .tabItem {
-                    Label("Characters", systemImage: "list.dash")
+                    Label("Heroes", systemImage: "list.dash")
                 }
             
             CreatorsView()

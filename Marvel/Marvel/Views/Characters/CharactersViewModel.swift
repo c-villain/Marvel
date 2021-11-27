@@ -61,4 +61,5 @@ final class CharactersViewModel: ObservableObject {
             print("error occured: \(error)")
         }
     }
+    
 }
