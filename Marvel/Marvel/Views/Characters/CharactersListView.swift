@@ -44,7 +44,7 @@ struct CharactersListView: View {
                     }
                 }
             }
-            .navigationBarTitle("Superheroes", displayMode: .automatic)
+            .navigationBarTitle("Marvel", displayMode: .automatic)
         }
         .searchable(text: $vm.searchForHero)
     }

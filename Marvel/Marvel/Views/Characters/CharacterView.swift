@@ -16,6 +16,7 @@ struct CharacterView: View {
     
     @State private var selection: Comic?
     @EnvironmentObject var vm: ComicViewModel
+    @EnvironmentObject var router: Router
     
     init(hero: ModelCharacter?) {
         self.hero = hero
@@ -44,29 +45,24 @@ struct CharacterView: View {
                         .font(.largeTitle)
                         .foregroundColor(.accentColor)
                     
-                    Group {
-                        if !imageUrl.isEmpty {
-                            AsyncImage(url: .init(string: imageUrl)) { phase in
-                                switch phase {
-                                case .empty:
-                                    ProgressView()
-                                case .success(let image):
-                                    image.resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                case .failure:
-                                    placeholder
-                                @unknown default:
-                                    // Since the AsyncImagePhase enum isn't frozen,
-                                    // we need to add this currently unused fallback
-                                    // to handle any new cases that might be added
-                                    // in the future:
-                                    placeholder
-                                }
-                            }
-                        } else {
+                    AsyncImage(url: .init(string: imageUrl )) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image.resizable()
+                                .aspectRatio(contentMode: .fit)
+                        case .failure:
+                            placeholder
+                        @unknown default:
+                            // Since the AsyncImagePhase enum isn't frozen,
+                            // we need to add this currently unused fallback
+                            // to handle any new cases that might be added
+                            // in the future:
                             placeholder
                         }
-                    }.overlay(alignment: .bottomLeading) {
+                    }
+                    .overlay(alignment: .bottomLeading) {
                         HStack {
                             ForEach(self.urls) { tag in
                                 if let text = tag.type, let url = URL(string: tag.url) {
@@ -98,15 +94,23 @@ struct CharacterView: View {
                     }
                 }
                 
-                LazyVStack(alignment: .leading, spacing: 8.0) {
-                    Text("Comics with \(hero?.name ?? ""):")
-                        .fontWeight(.bold)
-                    ForEach(comics) { comic in
-                        ComicListView_Item(comic: comic)
-                            .padding(.vertical, 4)
+                if let comicSummaryItems = hero?.comics?.items {
+
+                    LazyVStack(alignment: .leading, spacing: 8.0) {
+                        Text("Comics with \(hero?.name ?? ""):")
+                            .fontWeight(.bold)
+                        ForEach(comicSummaryItems, id: \.self) { comicSummary in
+                            if let url = URL(string: comicSummary.resourceURI?.subscribedUrlString ?? "") {
+                                NavigationLink (
+                                    destination: ComicView(vm: .init(comicUrl: url)),
+                                    label: {
+                                        ComicListView_Item(comicSummary: comicSummary)
+                                            .padding(.vertical, 4)
+                                    })
+                            }
+                        }
                     }
                 }
-                
                 Spacer()
             }
             .padding(.horizontal, 16.0)

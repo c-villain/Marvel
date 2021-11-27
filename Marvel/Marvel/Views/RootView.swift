@@ -17,7 +17,6 @@ struct RootView: View {
     var body: some View {
         TabView {
             CharactersListView()
-                .environmentObject(ComicViewModel())
                 .tabItem {
                     Label("Heroes", systemImage: "list.dash")
                 }

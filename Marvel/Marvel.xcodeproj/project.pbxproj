@@ -30,6 +30,7 @@
 		5AB92B74273C73BA00A3C6BB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB92B73273C73BA00A3C6BB /* RootView.swift */; };
 		5AB92B76273C73BB00A3C6BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB92B75273C73BB00A3C6BB /* Assets.xcassets */; };
 		5AB92B79273C73BB00A3C6BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB92B78273C73BB00A3C6BB /* Preview Assets.xcassets */; };
+		5AC361D82752AE5E00FF586B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC361D72752AE5E00FF586B /* Router.swift */; };
 		5AC640B227499EB5000EA6F8 /* URLSessionRequestBuilderFactoryMarvel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC640B127499EB5000EA6F8 /* URLSessionRequestBuilderFactoryMarvel.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		5AB92B75273C73BB00A3C6BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5AB92B78273C73BB00A3C6BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5AB92B80273C757000A3C6BB /* MarvelNetwork */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MarvelNetwork; path = ../MarvelNetwork; sourceTree = "<group>"; };
+		5AC361D72752AE5E00FF586B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		5AC640B127499EB5000EA6F8 /* URLSessionRequestBuilderFactoryMarvel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestBuilderFactoryMarvel.swift; sourceTree = "<group>"; };
 		5AC640B32749A38A000EA6F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +181,7 @@
 		5AB92B70273C73BA00A3C6BB /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
+				5AC361D62752ADF100FF586B /* Router */,
 				5A21104B274EF96E00C1B9BB /* Views */,
 				5A21104A274EF95800C1B9BB /* Services */,
 				5A22693A274DAF1C00D37614 /* Submodels */,
@@ -200,6 +203,14 @@
 				5AB92B78273C73BB00A3C6BB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5AC361D62752ADF100FF586B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5AC361D72752AE5E00FF586B /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		5AC640B027499E6E000EA6F8 /* Network */ = {
@@ -284,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AC361D82752AE5E00FF586B /* Router.swift in Sources */,
 				5AC640B227499EB5000EA6F8 /* URLSessionRequestBuilderFactoryMarvel.swift in Sources */,
 				5A211047274EF67600C1B9BB /* ComicView.swift in Sources */,
 				5A227EF9274AE6B700DA0F5B /* ModelExtensions.swift in Sources */,
