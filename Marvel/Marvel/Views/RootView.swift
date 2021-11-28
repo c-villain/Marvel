@@ -14,18 +14,39 @@ struct RootView: View {
         OpenAPIClientAPI.requestBuilderFactory = MarvelRequestBuilderFactory()
     }
     
+    // Hold the state for which tab is active/selected
+    @State var selection: Int = 0
+    
     var body: some View {
-        TabView {
+        
+        // Your native TabView here
+        TabView(selection: $selection) {
             CharactersListView()
-                .tabItem {
-                    Label("Heroes", systemImage: "list.dash")
-                }
-            
-            CreatorsView()
-                .tabItem {
-                    Label("Order", systemImage: "square.and.pencil")
-                }
+                .tag(0)
         }
+        .overlay( // Overlay the custom TabView component here
+            Color.white // Base color for Tab Bar
+                .edgesIgnoringSafeArea(.vertical)
+                .opacity(0.1)
+                .frame(height: 50) // Match Height of native bar
+                .overlay(
+                    HStack {
+                        // First Tab Button
+                        Button {
+                            self.selection = 0
+                        } label: {
+                            Image("marvel")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(Color(red: 32/255, green: 43/255, blue: 63/255))
+                                .opacity(selection == 0 ? 1 : 0.4)
+                        }
+                        .padding()
+                    }
+                )
+            ,alignment: .bottom)
+        // Align the overlay to bottom to ensure tab bar stays pinned.
     }
 }
 
