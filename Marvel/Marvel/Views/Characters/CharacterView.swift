@@ -11,24 +11,10 @@ import MarvelNetwork
 struct CharacterView: View {
     
     let hero: ModelCharacter?
-    var urls: [IdentifiableUrl] = []
-    var comics: [IdentifiableComicSummary] = []
     
     @State private var selection: Comic?
     @EnvironmentObject var vm: ComicViewModel
     @EnvironmentObject var router: Router
-    
-    init(hero: ModelCharacter?) {
-        self.hero = hero
-        
-        _ = hero?.urls?.compactMap {
-            self.urls.append(.init(url: $0.url ?? "", type: $0.type ?? ""))
-        }
-        
-        _ = hero?.comics?.items?.compactMap {
-            self.comics.append(.init(resourceURI: $0.resourceURI, name: $0.name))
-        }
-    }
     
     var placeholder: some View {
         Image(systemName: "photo")
@@ -64,18 +50,20 @@ struct CharacterView: View {
                     }
                     .overlay(alignment: .bottomLeading) {
                         HStack {
-                            ForEach(self.urls) { tag in
-                                if let text = tag.type, let url = URL(string: tag.url) {
-                                    Link(destination: url) {
-                                        Text(text)
-                                            .padding(8)
-                                            .font(.body)
-                                            .background(Color.blue)
-                                            .foregroundColor(Color.white)
-                                            .cornerRadius(5)
+                            if let urls = hero?.urls {
+                                ForEach(urls, id: \.self) { tag in
+                                    if let text = tag.type, let url = URL(string: tag.url ?? "") {
+                                        Link(destination: url) {
+                                            Text(text)
+                                                .padding(8)
+                                                .font(.body)
+                                                .background(Color.blue)
+                                                .foregroundColor(Color.white)
+                                                .cornerRadius(5)
+                                        }
+                                    } else {
+                                        EmptyView()
                                     }
-                                } else {
-                                    EmptyView()
                                 }
                             }
                         }
@@ -100,7 +88,7 @@ struct CharacterView: View {
                         Text("Comics with \(hero?.name ?? ""):")
                             .fontWeight(.bold)
                         ForEach(comicSummaryItems, id: \.self) { comicSummary in
-                            if let url = URL(string: comicSummary.resourceURI?.subscribedUrlString ?? "") {
+                            if let url = URL(string: comicSummary.resourceURI ?? "") {
                                 NavigationLink (
                                     destination: ComicView(vm: .init(comicUrl: url)),
                                     label: {
