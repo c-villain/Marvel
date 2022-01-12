@@ -2,7 +2,7 @@
 //  RootView.swift
 //  Marvel
 //
-//  Created by c-villain on 11.11.2021.
+//  Created by Alexander Kraev on 11.11.2021.
 //
 
 import SwiftUI
@@ -10,8 +10,10 @@ import MarvelNetwork
 
 struct RootView: View {
     
-    init() {
-        OpenAPIClientAPI.requestBuilderFactory = MarvelRequestBuilderFactory()
+    let showHero: (ModelCharacter?) -> Void
+    
+    init(showHero: @escaping (ModelCharacter?) -> Void) {
+        self.showHero = showHero
     }
     
     // Hold the state for which tab is active/selected
@@ -21,10 +23,10 @@ struct RootView: View {
         
         // Your native TabView here
         TabView(selection: $selection) {
-            CharactersListView()
+            CharactersListView(showHero: showHero)
                 .tag(0)
         }
-        .overlay( // Overlay the custom TabView component here
+        .overlay( // Overlay the custom TabView
             Color.white // Base color for Tab Bar
                 .edgesIgnoringSafeArea(.vertical)
                 .opacity(0.1)
@@ -45,13 +47,13 @@ struct RootView: View {
                         .padding()
                     }
                 )
-            ,alignment: .bottom)
-        // Align the overlay to bottom to ensure tab bar stays pinned.
+            , alignment: .bottom)
+        .navigationBarTitle("Marvel")
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        RootView(showHero: { _ in })
     }
 }

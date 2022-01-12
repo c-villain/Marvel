@@ -22,11 +22,13 @@
 		5A61722227404AE600DAAC0D /* CharactersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61722127404AE600DAAC0D /* CharactersListView.swift */; };
 		5A61722627404B6500DAAC0D /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61722527404B6500DAAC0D /* CharactersViewModel.swift */; };
 		5A61722927404BE100DAAC0D /* MarvelNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 5A61722827404BE100DAAC0D /* MarvelNetwork */; };
+		5A7D4319278F90F100006A8E /* NavigationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7D4318278F90F100006A8E /* NavigationNode.swift */; };
+		5A7D431B278F911700006A8E /* NStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7D431A278F911700006A8E /* NStack.swift */; };
+		5A808C9C278E2F7F00626878 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A808C9B278E2F7F00626878 /* Screen.swift */; };
 		5AB92B72273C73BA00A3C6BB /* MarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB92B71273C73BA00A3C6BB /* MarvelApp.swift */; };
 		5AB92B74273C73BA00A3C6BB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB92B73273C73BA00A3C6BB /* RootView.swift */; };
 		5AB92B76273C73BB00A3C6BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB92B75273C73BB00A3C6BB /* Assets.xcassets */; };
 		5AB92B79273C73BB00A3C6BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB92B78273C73BB00A3C6BB /* Preview Assets.xcassets */; };
-		5AC361D82752AE5E00FF586B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC361D72752AE5E00FF586B /* Router.swift */; };
 		5AC640B227499EB5000EA6F8 /* URLSessionRequestBuilderFactoryMarvel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC640B127499EB5000EA6F8 /* URLSessionRequestBuilderFactoryMarvel.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,13 +47,15 @@
 		5A227EFD274AE9B100DA0F5B /* getCharactersCollection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getCharactersCollection.json; sourceTree = "<group>"; };
 		5A61722127404AE600DAAC0D /* CharactersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListView.swift; sourceTree = "<group>"; };
 		5A61722527404B6500DAAC0D /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
+		5A7D4318278F90F100006A8E /* NavigationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationNode.swift; sourceTree = "<group>"; };
+		5A7D431A278F911700006A8E /* NStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NStack.swift; sourceTree = "<group>"; };
+		5A808C9B278E2F7F00626878 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		5AB92B6E273C73BA00A3C6BB /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB92B71273C73BA00A3C6BB /* MarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApp.swift; sourceTree = "<group>"; };
 		5AB92B73273C73BA00A3C6BB /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5AB92B75273C73BB00A3C6BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5AB92B78273C73BB00A3C6BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5AB92B80273C757000A3C6BB /* MarvelNetwork */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MarvelNetwork; path = ../MarvelNetwork; sourceTree = "<group>"; };
-		5AC361D72752AE5E00FF586B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		5AC640B127499EB5000EA6F8 /* URLSessionRequestBuilderFactoryMarvel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestBuilderFactoryMarvel.swift; sourceTree = "<group>"; };
 		5AC640B32749A38A000EA6F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +153,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5A7D4317278F7BC900006A8E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5A7D4318278F90F100006A8E /* NavigationNode.swift */,
+				5A7D431A278F911700006A8E /* NStack.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		5AB92B65273C73BA00A3C6BB = {
 			isa = PBXGroup;
 			children = (
@@ -196,7 +209,8 @@
 		5AC361D62752ADF100FF586B /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				5AC361D72752AE5E00FF586B /* Router.swift */,
+				5A7D4317278F7BC900006A8E /* Sources */,
+				5A808C9B278E2F7F00626878 /* Screen.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -283,11 +297,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AC361D82752AE5E00FF586B /* Router.swift in Sources */,
 				5AC640B227499EB5000EA6F8 /* URLSessionRequestBuilderFactoryMarvel.swift in Sources */,
+				5A7D4319278F90F100006A8E /* NavigationNode.swift in Sources */,
 				5A211047274EF67600C1B9BB /* ComicView.swift in Sources */,
 				5A227EF9274AE6B700DA0F5B /* ModelExtensions.swift in Sources */,
+				5A808C9C278E2F7F00626878 /* Screen.swift in Sources */,
 				5AB92B74273C73BA00A3C6BB /* RootView.swift in Sources */,
+				5A7D431B278F911700006A8E /* NStack.swift in Sources */,
 				5AB92B72273C73BA00A3C6BB /* MarvelApp.swift in Sources */,
 				5A227EFB274AE71100DA0F5B /* CharactersListView_Item.swift in Sources */,
 				5A211049274EF6D300C1B9BB /* ComicViewModel.swift in Sources */,

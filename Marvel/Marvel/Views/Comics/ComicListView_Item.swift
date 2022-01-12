@@ -2,7 +2,7 @@
 //  ComicListView_Item.swift
 //  Marvel
 //
-//  Created by c-villain on 25.11.2021.
+//  Created by Alexander Kraev on 25.11.2021.
 //
 
 import SwiftUI

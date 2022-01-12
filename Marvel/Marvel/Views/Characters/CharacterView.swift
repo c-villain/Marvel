@@ -2,7 +2,7 @@
 //  CharacterView.swift
 //  Marvel
 //
-//  Created by c-villain on 24.11.2021.
+//  Created by Alexander Kraev on 24.11.2021.
 //
 
 import SwiftUI
@@ -10,11 +10,11 @@ import MarvelNetwork
 
 struct CharacterView: View {
     
-    let hero: ModelCharacter?
-    
-    @State private var selection: Comic?
     @EnvironmentObject var vm: ComicViewModel
-    @EnvironmentObject var router: Router
+    let showComic: (URL) -> Void
+    
+    let hero: ModelCharacter?
+    @State private var selection: Comic?
     
     var placeholder: some View {
         Image(systemName: "photo")
@@ -26,11 +26,6 @@ struct CharacterView: View {
         return ScrollView {
             VStack(spacing: 12.0) {
                 VStack(alignment: .leading, spacing: 8.0) {
-                    Text(hero?.name ?? "Unknown hero")
-                        .fontWeight(.bold)
-                        .font(.largeTitle)
-                        .foregroundColor(.accentColor)
-                    
                     AsyncImage(url: .init(string: imageUrl )) { phase in
                         switch phase {
                         case .empty:
@@ -89,12 +84,11 @@ struct CharacterView: View {
                             .fontWeight(.bold)
                         ForEach(comicSummaryItems, id: \.self) { comicSummary in
                             if let url = URL(string: comicSummary.resourceURI ?? "") {
-                                NavigationLink (
-                                    destination: ComicView(vm: .init(comicUrl: url)),
-                                    label: {
-                                        ComicListView_Item(comicSummary: comicSummary)
-                                            .padding(.vertical, 4)
-                                    })
+                                ComicListView_Item(comicSummary: comicSummary)
+                                    .padding(.vertical, 4)
+                                    .onTapGesture {
+                                        showComic(url)
+                                    }
                             }
                         }
                     }
@@ -103,5 +97,6 @@ struct CharacterView: View {
             }
             .padding(.horizontal, 16.0)
         }
+        .navigationTitle(hero?.name ?? "Unknown hero")
     }
 }
