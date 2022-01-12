@@ -2,7 +2,7 @@
 //  ComicView.swift
 //  Marvel
 //
-//  Created by c-villain on 25.11.2021.
+//  Created by Alexander Kraev on 25.11.2021.
 //
 
 import SwiftUI
@@ -20,10 +20,6 @@ struct ComicView: View {
         ScrollView {
             VStack(spacing: 12.0) {
                 VStack(spacing: 8.0) {
-                    Text(vm.comic?.title ?? "")
-                        .fontWeight(.bold)
-                        .font(.title)
-                        .foregroundColor(.accentColor)
                     AsyncImage(url: .init(string: vm.imageUrl ?? "")) { phase in
                         switch phase {
                         case .empty:
@@ -54,8 +50,9 @@ struct ComicView: View {
                     }
                 }
             }
+            .padding(.horizontal, 16.0)
         }
-        .padding(.horizontal, 16.0)
+        .navigationTitle(Text(vm.comic?.title ?? ""))
         .task {
             do {
                 try await vm.comic()

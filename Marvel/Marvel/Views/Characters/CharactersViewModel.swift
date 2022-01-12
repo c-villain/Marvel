@@ -2,7 +2,7 @@
 //  CharactersViewModel.swift
 //  Marvel
 //
-//  Created by c-villain on 13.11.2021.
+//  Created by Alexander Kraev on 13.11.2021.
 //
 
 import SwiftUI
@@ -22,6 +22,7 @@ final class CharactersViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     
     init() {
+        print("CharactersViewModel init")
         $searchForHero
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
             .sink(receiveValue: { t in
@@ -37,6 +38,7 @@ final class CharactersViewModel: ObservableObject {
     }
     
     deinit {
+        print("CharactersViewModel deinit")
         subscriptions.removeAll()
     }
     

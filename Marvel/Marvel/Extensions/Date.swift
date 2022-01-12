@@ -2,7 +2,7 @@
 //  Date.swift
 //  Marvel
 //
-//  Created by c-villain on 21.11.2021.
+//  Created by Alexander Kraev on 21.11.2021.
 //
 
 import Foundation

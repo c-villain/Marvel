@@ -2,7 +2,7 @@
 //  CharactersListView.swift
 //  Marvel
 //
-//  Created by c-villain on 13.11.2021.
+//  Created by Alexander Kraev on 13.11.2021.
 //
 
 import SwiftUI
@@ -10,8 +10,9 @@ import MarvelNetwork
 
 struct CharactersListView: View {
     
-    @StateObject public var vm = CharactersViewModel()
-    @State private var selection: ModelCharacter?
+    @EnvironmentObject var vm: CharactersViewModel
+    
+    let showHero: (ModelCharacter?) -> Void
     
     var body: some View {
         NavigationView {
@@ -27,16 +28,8 @@ struct CharactersListView: View {
                                 }
                             }
                             .onTapGesture {
-                                selection = hero
+                                showHero(hero)
                             }
-                        
-                        NavigationLink (
-                            destination: CharacterView(hero: selection),
-                            tag: hero,
-                            selection: $selection,
-                            label: {
-                                EmptyView()
-                            })
                     }
 
                     if vm.isLoading {
@@ -44,7 +37,7 @@ struct CharactersListView: View {
                     }
                 }
             }
-            .navigationBarTitle("Marvel", displayMode: .automatic)
+            .navigationBarTitle("Marvel")
         }
         .searchable(text: $vm.searchForHero)
     }

@@ -2,7 +2,7 @@
 //  URLSessionRequestBuilderFactoryMarvel.swift
 //  Marvel
 //
-//  Created by c-villain on 21.11.2021.
+//  Created by Alexander Kraev on 21.11.2021.
 //
 
 import Foundation
@@ -26,8 +26,8 @@ class MarvelDecodableRequestBuilder<T: Decodable>: URLSessionDecodableRequestBui
         let publicKey = Obfuscator.injected.reveal(key: SecretAPIKeys.publicKey)
         let privateKey = Obfuscator.injected.reveal(key: SecretAPIKeys.privateKey)
         let hash = MD5(ts + privateKey + publicKey)
-        let subscribedUrlString = URLString + "&ts=\(ts)&apikey=\(publicKey)&hash=\(hash)"
-
+        let subscribedUrlString = URLString + "?&ts=\(ts)&apikey=\(publicKey)&hash=\(hash)"
+        
         guard let url = URL(string: subscribedUrlString) else {
             throw DownloadException.requestMissingURL
         }
