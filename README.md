@@ -3,9 +3,10 @@
 <p align="center">
     <img src="https://img.shields.io/badge/platform-IOS-blue" />
     <img src="https://img.shields.io/badge/iOS-15-blue" />
+    <img src="https://img.shields.io/badge/framework-SwiftUI-blue" />
 </p>
 
-Pet project for marvel app based on mvvm architecture
+Pet project for marvel app based on SwiftUI with MVVM architecture
 
 <p align="center">
 <img src="demo.gif" alt="Demo">
