@@ -22,6 +22,6 @@ Use coordinator pattern based on [FlowStacks](https://github.com/johnpatrickmorg
 
 ## Obfuscator
 
-Add obfuscator for safe storing private keys for API
+Add [obfuscation](https://en.wikipedia.org/wiki/Obfuscation_(software)) for safe storing private keys for API
 
 
