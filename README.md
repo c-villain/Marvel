@@ -1,5 +1,15 @@
 # Marvel
+
+<p align="center">
+    <img src="https://img.shields.io/badge/platform-IOS-blue" />
+    <img src="https://img.shields.io/badge/iOS-15-blue" />
+</p>
+
 Pet project for marvel app based on mvvm architecture
+
+<p align="center">
+<img src="demo.gif" alt="Demo">
+</p>
 
 ## Network
 
